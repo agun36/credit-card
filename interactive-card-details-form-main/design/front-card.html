@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front-Card</title>
+  <style>
+    /* @import url(https://fonts.google.com/specimen/Space+Grotesk); */
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: Space Grotesk;
+    }
+
+
+
+
+    .container {
+      display: flex;
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow-y: hidden;
+    }
+
+    .right-back {
+      display: flex;
+      margin: auto;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    label {
+      color: hsl(278, 68%, 11%);
+    }
+
+    input {
+      display: flex;
+      flex-direction: column;
+      width: clamp(100%, 10vw, 100%);
+      padding: clamp(15px, 10vw, 15px);
+      border-radius: 10px;
+      border: 2px solid hsl(279, 6%, 55%);
+    }
+
+    input::placeholder {
+      color: hsl(270, 3%, 87%);
+      font-size: 18px;
+    }
+
+    #btn {
+      padding: clamp(15px, 10vw, 15px);
+      font-size: clamp(18px, 10vw, 18px);
+      color: hsl(270, 3%, 87%);
+      border-radius: 10px;
+      background-color: hsl(278, 68%, 11%);
+      border: 2px solid hsl(278, 68%, 11%);
+    }
+
+    .column-3 {
+      display: flex;
+      gap: 12px;
+    }
+
+    .col-1 {
+      flex-basis: 30%;
+    }
+
+    .col-2 {
+      flex-basis: 35%;
+    }
+
+    .col-3 {
+      flex-basis: 35%;
+    }
+
+
+
+    .bg-card-front {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+    }
+
+    .bg-card-back {
+      position: absolute;
+      top: 58%;
+      left: 18%;
+    }
+
+    .logo-col-2 {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      left: 12%;
+      top: 13%;
+    }
+
+    #serial-number {
+      position: absolute;
+      color: hsl(0, 0%, 100%);
+      left: 12%;
+      top: 23%;
+      font-size: clamp(2.8rem, 5vw, 1rem);
+    }
+
+    .row-2 {
+      position: absolute;
+      color: hsl(0, 0%, 100%);
+      left: 12%;
+      top: 35%;
+      display: flex;
+      gap: 200px;
+      /* justify-content: space-between; */
+      width: 30%;
+    }
+
+    #month-output::after {
+      content: ' /';
+    }
+
+    .cvc-num {
+      position: absolute;
+      font-size: 18px;
+      top: 71.5%;
+      left: 38%;
+      color: hsl(0, 0%, 100%);
+    }
+
+    footer {
+      padding: 5px;
+      text-align: center;
+      font-size: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      /* color: hsl(0, 0%, 100%); */
+      position: absolute;
+      left: 50%;
+      top: 15%;
+      font-size: 2rem;
+      display: none;
+    }
+
+    footer button {
+      padding-left: 40%;
+      padding-right: 40%;
+      padding-top: 5%;
+      padding-bottom: 5%;
+      color: hsl(0, 0%, 100%);
+      font-size: 18px;
+      background-color: hsl(278, 68%, 11%);
+    }
+
+    @media (max-width:1024px) {
+      .container {
+        position: absolute;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        /* position: absolute; */
+        overflow: scroll;
+        /* overflow-x: hidden; */
+        height: 100vh;
+      }
+
+
+
+      .left-back img {
+        width: 100%;
+        height: 200px;
+      }
+
+      .right-back {
+        position: absolute;
+        bottom: -30%;
+        padding: 100px;
+        width: 100%;
+      }
+
+      .bg-card-front {
+
+        left: 4%;
+        top: 19%;
+        z-index: 2;
+      }
+
+
+      #serial-number {
+        z-index: 2;
+        left: 9%;
+        top: 33%;
+      }
+
+      .logo-col-2 {
+
+        top: 22%;
+        left: 9%;
+        z-index: 2;
+
+      }
+
+
+
+      .cvc-num {
+        z-index: 2;
+        left: 83%;
+        top: 16%;
+      }
+
+      .bg-card-back {
+        z-index: 1;
+
+        top: 2%;
+        left: 28%;
+      }
+
+      .row-2 {
+        z-index: 2;
+        width: 60%;
+        left: 9%;
+        top: 45%;
+      }
+
+      #btn {
+        margin: 20px;
+      }
+
+      footer {
+        left: 20%;
+        top: 60%;
+        /* right: 40%; */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left-back">
+      <img src="../images/bg-main-desktop.png" alt="">
+    </div>
+    <div class="right-back">
+      <form id="form" class="form-field" action="">
+        <div>
+          <label for="Name">CARDHOLDER NAME</label>
+          <input type="text" id="name" placeholder="e.g. Jane Appleseed">
+        </div>
+        <div>
+          <label for="Number">CARDHOLDER NUMBER</label>
+          <input type="number" id="serial-num" placeholder="e.g. 1234 5678 9123 0000" min="1234 5678 9123 0000"
+            max="1234 5678 9123 0000">
+        </div>
+        <div class="column">
+
+          <label for="number">EXP. DATE (MM/YY)</label>
+          <div class="column-3"> <input class="col-1" type="number" id="month" placeholder="02">
+            <input id="year" class="col-2" type="number" placeholder="YYYY">
+            <input class="col-3" type="number" id="cvc" placeholder="e.g 123">
+          </div>
+        </div>
+        <button id="btn">Confirm</button>
+      </form>
+    </div>
+    <section>
+      <div class="first-child-card">
+        <img class="bg-card-front" src="../images/bg-card-front.png" alt="">
+        <div class="logo-col-2">
+          <img src="../images/card-logo.svg" alt="" id="logo-1">
+          <img src="../images/favicon-32x32.png" alt="" id="logo-2">
+        </div>
+        <span id="serial-number" class="serial">0000 0000 0000 0000</span>
+        <div class="row-2">
+          <p class="card-name">Agun Akindele Toroti</p>
+          <p><span class="month" id="month-output"> 00</span><span class="year" id="year-output"> 00</span></p>
+        </div>
+      </div>
+      <div class="second-child-card">
+        <img class="bg-card-back" src="../images/bg-card-back.png" alt="">
+        <p class="cvc-num">
+          123
+        </p>
+      </div>
+    </section>
+    <footer id="footer">
+      <img src="../images/icon-complete.svg" alt="">
+      <h3>THANK YOU</h3>
+      <p>We've added your card details</p>
+      <button id="btn2">Continue</button>
+    </footer>
+  </div>
+
+  <script src="./src/front-card.js">
+
+  </script>
+  <!-- <script src="./src/front-card.js"></script> -->
+</body>
+
+</html>
